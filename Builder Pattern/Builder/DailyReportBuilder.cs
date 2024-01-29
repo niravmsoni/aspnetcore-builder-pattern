@@ -35,7 +35,7 @@ namespace Builder_Pattern.Builder
             _report.TitleSection = "-------Daily Inventory Report-------\n\n";
         }
 
-        public InventoryReport GetDailyReport()
+        public InventoryReport Build()
         {
             return _report;
         }

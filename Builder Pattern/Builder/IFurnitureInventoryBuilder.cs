@@ -14,6 +14,6 @@ namespace Builder_Pattern.Builder
 
         void AddLogistics(DateTime dateTime);
 
-        InventoryReport GetDailyReport();
+        InventoryReport Build();
     }
 }

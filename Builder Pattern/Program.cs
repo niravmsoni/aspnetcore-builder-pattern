@@ -22,7 +22,7 @@ namespace Builder_Pattern
 
             director.BuildCompleteReport();
 
-            var directorReport = inventoryBuilder.GetDailyReport();
+            var directorReport = inventoryBuilder.Build();
             Console.WriteLine(directorReport.Debug());
         }
     }
