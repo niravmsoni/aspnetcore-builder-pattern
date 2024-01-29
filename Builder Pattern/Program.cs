@@ -37,7 +37,9 @@ namespace Builder_Pattern
 
             #region Approach#2
             //Approach#2 - Fluent variant - Used more often
+            //var inventoryBuilder = new WeeklyReportBuilder(items);
             var inventoryBuilder = new DailyReportBuilder(items);
+            
             var fluentReport = inventoryBuilder
                 .AddTitle()
                 .AddDimensions()
