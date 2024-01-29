@@ -8,11 +8,11 @@ namespace Builder_Pattern.Builder
     /// </summary>
     public interface IFurnitureInventoryBuilder
     {
-        void AddTitle();
+        IFurnitureInventoryBuilder AddTitle();
 
-        void AddDimensions();
+        IFurnitureInventoryBuilder AddDimensions();
 
-        void AddLogistics(DateTime dateTime);
+        IFurnitureInventoryBuilder AddLogistics(DateTime dateTime);
 
         InventoryReport Build();
     }

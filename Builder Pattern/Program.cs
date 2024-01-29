@@ -17,6 +17,9 @@ namespace Builder_Pattern
                 new FurnitureItem("Dining Table", 105.0, 35.4, 100.6, 55.5),
             };
 
+            #region Approach#1
+            //Using Director class - Less practically seen due to a lot of abstractions
+            /*
             //Create instance of concrete Builder
             var inventoryBuilder = new DailyReportBuilder(items);
 
@@ -28,6 +31,22 @@ namespace Builder_Pattern
 
             var directorReport = inventoryBuilder.Build();
             Console.WriteLine(directorReport.Debug());
+            */
+
+            #endregion
+
+            #region Approach#2
+            //Approach#2 - Fluent variant - Used more often
+            var inventoryBuilder = new DailyReportBuilder(items);
+            var fluentReport = inventoryBuilder
+                .AddTitle()
+                .AddDimensions()
+                .AddLogistics(DateTime.Now)
+                .Build();
+
+            Console.Write(fluentReport.Debug());
+
+            #endregion
         }
     }
 }

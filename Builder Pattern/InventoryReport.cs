@@ -19,6 +19,7 @@ namespace Builder_Pattern
         /// <returns></returns>
         public string Debug()
         {
+            //Fluent manner
             return new StringBuilder()
                 .AppendLine(TitleSection)
                 .AppendLine(DimensionsSection)
