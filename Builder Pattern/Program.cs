@@ -17,9 +17,13 @@ namespace Builder_Pattern
                 new FurnitureItem("Dining Table", 105.0, 35.4, 100.6, 55.5),
             };
 
+            //Create instance of concrete Builder
             var inventoryBuilder = new DailyReportBuilder(items);
+
+            //Create instance of director class and pass whatever concrete builder needs to be invoked
             var director = new InventoryBuildDirector(inventoryBuilder);
 
+            //Executing the method that would call AddTitle(), AddLogistics(), AddDimensions()
             director.BuildCompleteReport();
 
             var directorReport = inventoryBuilder.Build();
