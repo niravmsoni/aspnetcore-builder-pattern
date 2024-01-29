@@ -36,3 +36,14 @@
 		- From Program.cs
 			- Create instance of Concrete Builder (DailyReportBuilder)
 			- Start Building the object directly
+
+	- Use cases
+		- Not for everything - It is actually an overkill for most classes where subclassing, refactoring or abstract interfaces would be better solution
+		- To be used where we see Bloated class constructors
+		- When we know of finite number of related classes performing similar functions with different representations
+
+	- Implications
+		- Lets us vary product internal representation
+		- Isolates code for construction and representation
+		- Finer control over construction process
+		- Shares similarities with Factory pattern. Difference is Builder responsible for creation of a single object whereas Factory responsible for creation of factories of similar objects
