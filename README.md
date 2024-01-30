@@ -42,7 +42,7 @@
 		- To be used where we see Bloated class constructors
 		- When we know of finite number of related classes performing similar functions with different representations
 
-	- Implications
+	- Implication
 		- Lets us vary product internal representation
 		- Isolates code for construction and representation
 		- Finer control over construction process
