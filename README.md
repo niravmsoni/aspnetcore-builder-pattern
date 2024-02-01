@@ -47,3 +47,87 @@
 		- Isolates code for construction and representation
 		- Finer control over construction process
 		- Shares similarities with Factory pattern. Difference is Builder responsible for creation of a single object whereas Factory responsible for creation of factories of similar objects
+
+
+
+
+	//Concrete class
+	public class AuditMessage
+	{
+		public string OrganizationId{get;set;}
+		public string Service{get;set;}
+		public string Endpoint{get;set;}
+		public string Payload{get;set;}
+		public string Timestamp{get;set;}
+	}
+
+	//Builder interface
+	public interface IAuditMessageBuilder
+	{
+		IAuditMessageBuilder SetOrg(string org);
+		IAuditMessageBuilder SetService(string svc);
+		IAuditMessageBuilder SetEndpoint(string endpoint);
+		IAuditMessageBuilder SetPayload(string payload);
+		AuditMessage Build();
+	}
+
+	//Concrete builder
+	public class AuditMessageBuilder : IAuditMessageBuilder
+	{
+		private readonly AuditMessage _auditMessage;
+		public AuditMessageBuilder()
+		{
+			_auditMessage = new();
+		}
+
+		public IAuditMessageBuilder SetOrg(string org)
+		{
+			_auditMessage.OrganizationId = org;
+			return this;
+		}
+		public IAuditMessageBuilder SetService(string svc)
+		{
+			_auditMessage.Service = svc;
+			return this;
+		}
+		public IAuditMessageBuilder SetEndpoint(string endpoint)
+		{
+			_auditMessage.Endpoint = endpoint;
+			return this;
+		}
+		public IAuditMessageBuilder SetPayload(string payload)
+		{
+			_auditMessage.Payload = payload;
+			return this;
+		}
+		public AuditMessage Build()
+		{
+			_auditMessage.Timestamp = DateTime.UtcNow;
+			return _auditMessage;
+		}
+	}
+
+	//DI-Wireup
+	services.AddScoped<IAuditMessageBuilder, AuditMessageBuilder>();
+
+	//Consumer
+	public class HomeController : ControllerBase
+	{
+		private readonly IAuditMessageBuilder _auditMessageBuilder;
+
+		public HomeController(IAuditMessageBuilder auditMessageBuilder)
+		{
+			_auditMessageBuilder = auditMessageBuilder;
+		}
+
+		[HttpGet, Route("/get")]
+		public IActionResult Get(CancellationToken cancellationToken)
+		{
+			//Get audit message
+			var auditMessage = _auditMessageBuilder.SetOrg("SetOrg)
+			.SetService("Svc")
+			.SetEndpoint("endpoint")
+			.SetPayload("payload")
+			.Build();
+		}
+	}
